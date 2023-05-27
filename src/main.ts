@@ -47,8 +47,10 @@ async function bootstrap() {
   app.useGlobalFilters(new HttpExceptionFilter());
   useContainer(app.select(V1AppModule), { fallbackOnErrors: true });
 
-  const document = SwaggerModule.createDocument(app, swaggerConfig());
-  SwaggerModule.setup('api/chansey/docs', app, document);
+  if (config.app.environment.toUpperCase() !== 'PRD') {
+    const document = SwaggerModule.createDocument(app, swaggerConfig());
+    SwaggerModule.setup('api/chansey/docs', app, document);
+  }
 
   await app.listen(config.app.port | 3000);
 }
