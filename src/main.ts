@@ -13,7 +13,7 @@ import { config } from './config';
 
 function swaggerConfig() {
   const config = new DocumentBuilder()
-    .setTitle('API Blastoise')
+    .setTitle('API Chansey')
     .setDescription('Monolito responsável pelo backend do software Insight.')
     .setVersion('1.0')
     .addSecurity('TokenAuth', {
@@ -43,12 +43,12 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
-  app.setGlobalPrefix('api/blastoise');
+  app.setGlobalPrefix('api/chansey');
   app.useGlobalFilters(new HttpExceptionFilter());
   useContainer(app.select(V1AppModule), { fallbackOnErrors: true });
 
   const document = SwaggerModule.createDocument(app, swaggerConfig());
-  SwaggerModule.setup('api/blastoise/docs', app, document);
+  SwaggerModule.setup('api/chansey/docs', app, document);
 
   await app.listen(config.app.port | 3000);
 }
