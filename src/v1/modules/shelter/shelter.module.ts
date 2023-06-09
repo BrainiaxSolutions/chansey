@@ -1,11 +1,13 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { ShelterService } from './shelter.service';
 import { ShelterController } from './shelter.controller';
-import { Shelter } from 'src/v1/database/models/shelter.entity';
+import { Shelter, ShelterSchema } from 'src/v1/database/models/shelter.entity';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Shelter])],
+  imports: [
+    MongooseModule.forFeature([{ name: Shelter.name, schema: ShelterSchema }]),
+  ],
   controllers: [ShelterController],
   providers: [ShelterService],
 })

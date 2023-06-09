@@ -58,6 +58,12 @@ export class CreateShelterDto {
   addressNumber: string;
 
   @IsNotEmpty()
+  @IsString()
+  @Length(1, 30)
+  @ApiProperty()
+  complement: string;
+
+  @IsNotEmpty()
   @IsNumberString()
   @Length(14, 14)
   @ApiProperty()
