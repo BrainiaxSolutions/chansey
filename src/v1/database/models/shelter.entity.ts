@@ -1,103 +1,110 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  CreateDateColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { v4 as uuidv4 } from 'uuid';
 
-@Entity({ name: 'shelters' })
+@Schema()
 export class Shelter {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @Prop({
+    type: String,
+    default: () => uuidv4(),
+  })
+  _id: string;
 
-  @Column({
-    type: 'varchar',
+  @Prop({
+    type: String,
     length: '45',
     nullable: false,
   })
   name: string;
 
-  @Column({
-    type: 'varchar',
+  @Prop({
+    type: String,
     length: '45',
     nullable: false,
     unique: true,
   })
   email: string;
 
-  @Column({
-    type: 'char',
+  @Prop({
+    type: String,
     length: '18',
     unique: true,
     nullable: false,
   })
   cnpj: string;
 
-  @Column({
-    type: 'char',
+  @Prop({
+    type: String,
     length: '2',
     nullable: true,
   })
   state: string;
 
-  @Column({
-    type: 'varchar',
+  @Prop({
+    type: String,
     length: 29,
     nullable: true,
   })
   city: string;
 
-  @Column({
-    type: 'char',
+  @Prop({
+    type: String,
     length: '9',
     nullable: false,
   })
   zipCode: string;
 
-  @Column({
-    type: 'varchar',
+  @Prop({
+    type: String,
     length: 45,
     nullable: false,
   })
   address: string;
 
-  @Column({
-    type: 'varchar',
+  @Prop({
+    type: String,
     length: 4,
     nullable: false,
   })
   addressNumber: string;
 
-  @Column({
-    type: 'char',
+  @Prop({
+    type: String,
+    length: 30,
+    nullable: false,
+  })
+  complement: string;
+
+  @Prop({
+    type: String,
     length: 14,
     nullable: false,
   })
   phone: string;
 
-  @Column({
-    type: 'boolean',
+  @Prop({
+    type: Boolean,
     default: false,
     nullable: true,
   })
   isActive: string;
 
-  @Column({
-    type: 'boolean',
+  @Prop({
+    type: Boolean,
     nullable: false,
   })
   terms: string;
 
-  @CreateDateColumn({
-    type: 'timestamp',
-    nullable: false,
+  @Prop({
+    type: Date,
+    default: new Date().toISOString(),
   })
   createdAt: Date;
 
-  @UpdateDateColumn({
-    type: 'timestamp',
-    nullable: false,
+  @Prop({
+    type: Date,
+    default: new Date().toISOString(),
   })
   updatedAt: Date;
 }
+
+export const ShelterSchema = SchemaFactory.createForClass(Shelter);
