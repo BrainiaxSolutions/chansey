@@ -5,6 +5,10 @@ import { CreateShelterDto } from './dto/create-shelter.dto';
 import { UpdateShelterDto } from './dto/update-shelter.dto';
 import { Shelter } from 'src/v1/database/models/shelter.entity';
 import { FindZipCodeShelterDto } from './dto/find-zipCode-shelter.dto';
+import { Step } from './validators/cor/Step';
+import { CnpjExistsUpdate } from './validators/cor/CnpjExistsUpdate.validator';
+import { SucessValidate } from './validators/cor/SuccessValidate.validator';
+import { EmailExistsUpdate } from './validators/cor/EmailExistsUpdate.validator';
 @Injectable()
 export class ShelterService {
   constructor(
@@ -37,6 +41,12 @@ export class ShelterService {
   }
 
   async update(id: string, updateShelterDto: UpdateShelterDto) {
+    const validate: Step = new CnpjExistsUpdate(
+      this.shelterRepository,
+      new EmailExistsUpdate(this.shelterRepository, new SucessValidate()),
+    );
+    await validate.validate(id, updateShelterDto);
+
     const shelter = await this.shelterRepository.updateOne(
       { _id: id },
       updateShelterDto,
