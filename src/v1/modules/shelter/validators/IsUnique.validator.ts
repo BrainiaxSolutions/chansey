@@ -23,7 +23,7 @@ export class IsUniqueConstraint implements ValidatorConstraintInterface {
       [field]: value,
     });
 
-    return !fieldExist;
+    return fieldExist.length === 0;
   }
 
   defaultMessage(args: any): string {
