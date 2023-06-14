@@ -14,7 +14,9 @@ import { config } from './config';
 function swaggerConfig() {
   const config = new DocumentBuilder()
     .setTitle('API Chansey')
-    .setDescription('Monolito responsável pelo backend do software Insight.')
+    .setDescription(
+      'Lambda responsável pelo gerenciamento de abrigos do sistema Pluvial.',
+    )
     .setVersion('1.0')
     .addSecurity('TokenAuth', {
       type: 'http',

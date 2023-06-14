@@ -1,8 +1,8 @@
 {
   "name": "chansey",
   "version": "1.0.0",
-  "description": "",
-  "author": "",
+  "description": "Lambda responsável pelo gerenciamento de abrigos do sistema Pluvial.",
+  "author": "Beatriz Assunção, Luiz Ricardo Santos, Ian Soares e Yumi Tokuo",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
