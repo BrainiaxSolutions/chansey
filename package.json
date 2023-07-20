@@ -9,7 +9,7 @@
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "lambda:start:deploy": "serverless deploy",
-    "lambda:start:dev": "cat ./serverless.dev.yml > ./serverless.yml && serverless offline start --reloadHandler",
+    "lambda:start:dev": "cat ./serverless.dev.yml > ./serverless.yml && npm run build && npx serverless offline start --reloadHandler",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
