@@ -3,6 +3,7 @@ service: serverless-chansey
 useDotenv: true
 
 plugins:
+  - serverless-plugin-optimize
   - serverless-offline
 
 provider:
