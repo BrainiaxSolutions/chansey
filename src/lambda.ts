@@ -1,4 +1,5 @@
 import { NestFactory } from '@nestjs/core';
+import { ValidationPipe } from '@nestjs/common';
 import {
   FastifyAdapter,
   NestFastifyApplication,
@@ -11,6 +12,8 @@ import {
   APIGatewayProxyEvent,
   APIGatewayProxyResult,
 } from 'aws-lambda';
+import { HttpExceptionFilter } from './config/error/http-exception.filter';
+import { useContainer } from 'class-validator';
 
 interface NestApp {
   app: NestFastifyApplication;
@@ -25,7 +28,20 @@ async function bootstrapServer(): Promise<NestApp> {
   const app = await NestFactory.create<NestFastifyApplication>(
     V1AppModule,
     new FastifyAdapter(instance),
+    { cors: true },
   );
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      whitelist: true,
+      forbidNonWhitelisted: true,
+    }),
+  );
+  app.setGlobalPrefix('api/chansey');
+  app.useGlobalFilters(new HttpExceptionFilter());
+  useContainer(app.select(V1AppModule), { fallbackOnErrors: true });
+
   await app.init();
   return { app, instance };
 }
