@@ -9,6 +9,7 @@ import {
   Matches,
   MaxLength,
 } from 'class-validator';
+import { IsUnique } from '../validators/IsUnique.validator';
 
 export class CreateShelterDto {
   @IsNotEmpty()
@@ -20,11 +21,13 @@ export class CreateShelterDto {
   @IsNotEmpty()
   @Length(1, 45)
   @IsEmail()
+  @IsUnique()
   @ApiProperty()
   email: string;
 
   @IsNotEmpty()
   @Length(18, 18)
+  @IsUnique()
   @ApiProperty()
   cnpj: string;
 
@@ -65,9 +68,9 @@ export class CreateShelterDto {
 
   @IsNotEmpty()
   @IsNumberString()
-  @Length(14, 14)
+  @Length(13, 14)
   @ApiProperty()
-  @Matches(/^\+\d{13}$/)
+  @Matches(/^\+\d{12,13}$/)
   phone: string;
 
   isActive?: boolean;
