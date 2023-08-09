@@ -28,7 +28,7 @@ function swaggerConfig() {
   const config = new DocumentBuilder()
     .setTitle('API Chansey')
     .setDescription(
-      'Lambda responsável pelo gerenciamento de empresas do sistema Pluvial.',
+      'Lambda responsável pelo gerenciamento de abrigos do sistema Pluvial.',
     )
     .setVersion('1.0')
     .addSecurity('TokenAuth', {
@@ -60,14 +60,16 @@ async function bootstrapServer(): Promise<NestApp> {
       forbidNonWhitelisted: true,
     }),
   );
-  app.setGlobalPrefix('api/chansey');
-  app.useGlobalFilters(new HttpExceptionFilter());
-  useContainer(app.select(V1AppModule), { fallbackOnErrors: true });
 
   if (config.app.environment.toUpperCase() !== 'PRD') {
+    app.setGlobalPrefix('dev/api/chansey');
     const document = SwaggerModule.createDocument(app, swaggerConfig());
     SwaggerModule.setup('api/chansey/docs', app, document);
   }
+
+  app.useGlobalFilters(new HttpExceptionFilter());
+  useContainer(app.select(V1AppModule), { fallbackOnErrors: true });
+  app.setGlobalPrefix('api/chansey');
 
   await app.init();
   return { app, instance };
