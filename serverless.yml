@@ -9,6 +9,7 @@ plugins:
 provider:
   name: aws
   runtime: nodejs18.x
+  timeout: 900
   environment:
     PORT: ${env:PORT}
     APP_ENVIRONMENT: ${env:APP_ENVIRONMENT}
