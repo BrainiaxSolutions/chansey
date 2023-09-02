@@ -1,10 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsArray, ArrayNotEmpty, IsPostalCode } from 'class-validator';
+import { IsArray, ArrayNotEmpty } from 'class-validator';
 
 export class FindZipCodeShelterDto {
   @IsArray()
   @ArrayNotEmpty()
-  @IsPostalCode('BR', { each: true })
-  @ApiProperty({ example: ['00000-000'] })
+  @ApiProperty({ example: ['00000000'] })
   zipCode: string[];
 }
