@@ -44,7 +44,7 @@ export class CreateShelterDto {
 
   @IsNotEmpty()
   @IsString()
-  @Length(9, 9)
+  @Length(8, 8)
   @ApiProperty()
   zipCode: string;
 
@@ -70,7 +70,7 @@ export class CreateShelterDto {
   @IsNumberString()
   @Length(13, 14)
   @ApiProperty()
-  @Matches(/^\+\d{12,13}$/)
+  @Matches(/^\d{13}$/)
   phone: string;
 
   isActive?: boolean;
