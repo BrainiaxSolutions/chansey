@@ -3,6 +3,7 @@ import {
   IsEmail,
   IsNotEmpty,
   IsNumberString,
+  IsOptional,
   IsString,
   Length,
   Matches,
@@ -61,6 +62,20 @@ export class UpdateShelterDto {
   @Length(1, 30)
   @ApiProperty()
   complement: string;
+
+  @IsString()
+  @Length(3, 12)
+  @Matches(/-?(\d{1,3}(\.\d+)?|90(\.0+)?)/)
+  @ApiProperty()
+  @IsOptional()
+  latitude?: string;
+
+  @IsString()
+  @Length(3, 12)
+  @Matches(/-?(\d{1,3}(\.\d+)?|180(\.0+)?)/)
+  @IsOptional()
+  @ApiProperty()
+  longitude?: string;
 
   @IsNotEmpty()
   @IsNumberString()

@@ -8,6 +8,7 @@ import {
   IsBoolean,
   Matches,
   MaxLength,
+  IsOptional,
 } from 'class-validator';
 import { IsUnique } from '../validators/IsUnique.validator';
 
@@ -65,6 +66,20 @@ export class CreateShelterDto {
   @Length(1, 30)
   @ApiProperty()
   complement: string;
+
+  @IsString()
+  @Length(3, 12)
+  @Matches(/-?(\d{1,3}(\.\d+)?|90(\.0+)?)/)
+  @ApiProperty()
+  @IsOptional()
+  latitude?: string;
+
+  @IsString()
+  @Length(3, 12)
+  @Matches(/-?(\d{1,3}(\.\d+)?|180(\.0+)?)/)
+  @IsOptional()
+  @ApiProperty()
+  longitude?: string;
 
   @IsNotEmpty()
   @IsNumberString()

@@ -76,6 +76,22 @@ export class Shelter {
 
   @Prop({
     type: String,
+    minLength: 3,
+    maxlength: 12,
+    nullable: false,
+  })
+  latitude: string;
+
+  @Prop({
+    type: String,
+    minLength: 3,
+    maxlength: 12,
+    nullable: false,
+  })
+  longitude: string;
+
+  @Prop({
+    type: String,
     length: 14,
     nullable: false,
   })
