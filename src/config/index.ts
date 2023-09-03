@@ -7,4 +7,10 @@ export const config = Object.freeze({
     name: process.env.DB_NAME,
     url: process.env.DB_URL,
   },
+  providers: {
+    geocoder: {
+      url: process.env.URL_GEOCODING,
+      key: process.env.API_KEY_GEOCODING,
+    },
+  },
 });

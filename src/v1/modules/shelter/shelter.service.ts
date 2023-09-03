@@ -9,13 +9,29 @@ import { Step } from './validators/cor/Step';
 import { CnpjExistsUpdate } from './validators/cor/CnpjExistsUpdate.validator';
 import { SucessValidate } from './validators/cor/SuccessValidate.validator';
 import { EmailExistsUpdate } from './validators/cor/EmailExistsUpdate.validator';
+import { Geocoding } from 'src/providers/geocoding';
 @Injectable()
 export class ShelterService {
   constructor(
     @InjectModel(Shelter.name) private shelterRepository: Model<Shelter>,
+    private readonly geocoding: Geocoding,
   ) {}
 
+  async addCordenates(residentDto) {
+    const { latitude, longitude } = await this.geocoding.getCoordinates({
+      zipcode: residentDto.zipCode,
+      address: `${residentDto.address}, ${residentDto.addressNumber}`,
+    });
+    residentDto.latitude = latitude;
+    residentDto.longitude = longitude;
+
+    return residentDto;
+  }
+
   async create(createShelterDto: CreateShelterDto): Promise<Shelter> {
+    if (!createShelterDto.latitude || !createShelterDto.longitude)
+      createShelterDto = await this.addCordenates(createShelterDto);
+
     const createdShelter = new this.shelterRepository(createShelterDto);
     return (await createdShelter.save()).toObject();
   }
@@ -47,6 +63,9 @@ export class ShelterService {
     );
     await validate.validate(id, updateShelterDto);
 
+    if (!updateShelterDto.latitude || !updateShelterDto.longitude)
+      updateShelterDto = await this.addCordenates(updateShelterDto);
+
     const shelter = await this.shelterRepository.updateOne(
       { _id: id },
       updateShelterDto,
@@ -55,7 +74,7 @@ export class ShelterService {
       },
     );
 
-    if (!shelter)
+    if (!shelter.matchedCount)
       throw new HttpException(
         'Shelter id not exists in database.',
         HttpStatus.NOT_FOUND,
