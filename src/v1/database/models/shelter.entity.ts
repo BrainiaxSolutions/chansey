@@ -75,20 +75,17 @@ export class Shelter {
   complement: string;
 
   @Prop({
-    type: String,
-    minLength: 3,
-    maxlength: 12,
-    nullable: false,
+    type: {
+      type: String,
+      enum: ['Point'],
+      default: 'Point',
+    },
+    coordinates: [Number],
   })
-  latitude: string;
-
-  @Prop({
-    type: String,
-    minLength: 3,
-    maxlength: 12,
-    nullable: false,
-  })
-  longitude: string;
+  location: {
+    type: string;
+    coordinates: [number, number];
+  };
 
   @Prop({
     type: String,

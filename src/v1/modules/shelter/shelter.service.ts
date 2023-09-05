@@ -22,14 +22,22 @@ export class ShelterService {
       zipcode: residentDto.zipCode,
       address: `${residentDto.address}, ${residentDto.addressNumber}`,
     });
-    residentDto.latitude = latitude;
-    residentDto.longitude = longitude;
+
+    residentDto.location = {
+      coordinates: [],
+    };
+
+    residentDto.location.coordinates[0] = longitude;
+    residentDto.location.coordinates[1] = latitude;
 
     return residentDto;
   }
 
   async create(createShelterDto: CreateShelterDto): Promise<Shelter> {
-    if (!createShelterDto.latitude || !createShelterDto.longitude)
+    if (
+      !createShelterDto.location?.coordinates[0] ||
+      !createShelterDto.location?.coordinates[1]
+    )
       createShelterDto = await this.addCordenates(createShelterDto);
 
     const createdShelter = new this.shelterRepository(createShelterDto);
@@ -63,7 +71,10 @@ export class ShelterService {
     );
     await validate.validate(id, updateShelterDto);
 
-    if (!updateShelterDto.latitude || !updateShelterDto.longitude)
+    if (
+      !updateShelterDto.location?.coordinates[0] ||
+      !updateShelterDto.location?.coordinates[1]
+    )
       updateShelterDto = await this.addCordenates(updateShelterDto);
 
     const shelter = await this.shelterRepository.updateOne(
