@@ -1,8 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { LocationType } from '../../../../../@types/Coordinates';
 import {
   IsEmail,
   IsNotEmpty,
   IsNumberString,
+  IsObject,
   IsOptional,
   IsString,
   Length,
@@ -63,19 +65,22 @@ export class UpdateShelterDto {
   @ApiProperty()
   complement: string;
 
-  @IsString()
-  @Length(3, 12)
-  @Matches(/-?(\d{1,3}(\.\d+)?|90(\.0+)?)/)
-  @ApiProperty()
+  @IsObject()
   @IsOptional()
-  latitude?: string;
-
-  @IsString()
-  @Length(3, 12)
-  @Matches(/-?(\d{1,3}(\.\d+)?|180(\.0+)?)/)
-  @IsOptional()
-  @ApiProperty()
-  longitude?: string;
+  @ApiProperty({
+    type: 'object',
+    properties: {
+      coordinates: {
+        type: 'array',
+        items: {
+          type: 'number',
+          example: 0,
+        },
+        minItems: 2,
+      },
+    },
+  })
+  location?: LocationType;
 
   @IsNotEmpty()
   @IsNumberString()

@@ -9,8 +9,10 @@ import {
   Matches,
   MaxLength,
   IsOptional,
+  IsObject,
 } from 'class-validator';
 import { IsUnique } from '../validators/IsUnique.validator';
+import { LocationType } from '../../../../../@types/Coordinates';
 
 export class CreateShelterDto {
   @IsNotEmpty()
@@ -67,19 +69,22 @@ export class CreateShelterDto {
   @ApiProperty()
   complement: string;
 
-  @IsString()
-  @Length(3, 12)
-  @Matches(/-?(\d{1,3}(\.\d+)?|90(\.0+)?)/)
-  @ApiProperty()
+  @IsObject()
   @IsOptional()
-  latitude?: string;
-
-  @IsString()
-  @Length(3, 12)
-  @Matches(/-?(\d{1,3}(\.\d+)?|180(\.0+)?)/)
-  @IsOptional()
-  @ApiProperty()
-  longitude?: string;
+  @ApiProperty({
+    type: 'object',
+    properties: {
+      coordinates: {
+        type: 'array',
+        items: {
+          type: 'number',
+          example: 0,
+        },
+        minItems: 2,
+      },
+    },
+  })
+  location?: LocationType;
 
   @IsNotEmpty()
   @IsNumberString()

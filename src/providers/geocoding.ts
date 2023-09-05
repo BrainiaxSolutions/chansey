@@ -1,6 +1,6 @@
+import { CoordinatesType } from './../../@types/Coordinates.d';
 import * as NodeGeocoder from 'node-geocoder';
 import { config } from '../config';
-import { Coordinates } from '../../@types/Coordinates';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
@@ -14,15 +14,15 @@ export class Geocoding {
     });
   }
 
-  async getCoordinates(query: NodeGeocoder.Query): Promise<Coordinates> {
+  async getCoordinates(query: NodeGeocoder.Query): Promise<CoordinatesType> {
     try {
       const res = await this.geocoder.geocode(query);
 
       if (res.length > 0) {
         const location = res[0];
         return {
-          latitude: String(location.latitude),
-          longitude: String(location.longitude),
+          latitude: location.latitude,
+          longitude: location.longitude,
         };
       } else {
         throw new Error(
