@@ -8,7 +8,9 @@ plugins:
 
 custom:
   serverless-offline:
-    httpPort: 3001
+    httpPort: 4003
+    websocketPort: 4004
+    lambdaPort: 4005
 
 provider:
   name: aws
