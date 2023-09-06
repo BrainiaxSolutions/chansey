@@ -6,6 +6,10 @@ plugins:
   - serverless-plugin-optimize
   - serverless-offline
 
+custom:
+  serverless-offline:
+    httpPort: 3001
+
 provider:
   name: aws
   runtime: nodejs18.x
@@ -16,6 +20,9 @@ provider:
 
     DB_NAME: ${env:DB_NAME}
     DB_URL: ${env:DB_URL}
+
+    URL_GEOCODING: ${env:URL_GEOCODING}
+    API_KEY_GEOCODING: ${env:API_KEY_GEOCODING}
 
 functions:
   main:

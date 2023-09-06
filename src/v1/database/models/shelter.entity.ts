@@ -75,6 +75,19 @@ export class Shelter {
   complement: string;
 
   @Prop({
+    type: {
+      type: String,
+      enum: ['Point'],
+      default: 'Point',
+    },
+    coordinates: [Number],
+  })
+  location: {
+    type: string;
+    coordinates: [number, number];
+  };
+
+  @Prop({
     type: String,
     length: 14,
     nullable: false,
