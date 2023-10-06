@@ -28,6 +28,11 @@ lerna-debug.log*
 .settings/
 *.sublime-workspace
 
+# terraform 
+.terraform
+*.tfstate*
+*.tfvars*
+
 # IDE - VSCode
 .vscode/*
 !.vscode/settings.json
