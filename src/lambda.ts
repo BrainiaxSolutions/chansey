@@ -1,4 +1,3 @@
-import * as awsLambdaFastify from '@fastify/aws-lambda';
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import {
@@ -7,6 +6,7 @@ import {
 } from '@nestjs/platform-fastify';
 import { V1AppModule } from './v1/app.module';
 import { FastifyServerOptions, FastifyInstance, fastify } from 'fastify';
+import * as awsLambdaFastify from '@fastify/aws-lambda';
 import {
   Context,
   APIGatewayProxyEvent,
@@ -51,9 +51,6 @@ export const handler = async (
   event: APIGatewayProxyEvent,
   context: Context,
 ): Promise<APIGatewayProxyResult> => {
-  if (!cachedNestApp) {
-    cachedNestApp = await bootstrapServer();
-  }
   const proxy = awsLambdaFastify(cachedNestApp.instance);
   return proxy(event, context);
 };
