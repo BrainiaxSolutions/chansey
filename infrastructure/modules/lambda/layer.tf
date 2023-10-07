@@ -8,6 +8,6 @@ resource "aws_lambda_layer_version" "lambda_layer" {
 
 data "archive_file" "deps_layer_code_zip" {
   type        = "zip"
-  source_dir  = "${path.module}/../../../layers/deps-layer/"
-  output_path = "${path.module}/../../../layers/deps.zip"
+  source_dir  = "${path.module}/../../../node_modules/"
+  output_path = "${path.module}/../../../node_modules/deps.zip"
 }
