@@ -76,6 +76,12 @@ variable "lambda_function_layer_name" {
   default     = "chansey-api-layer"
 }
 
+variable "lambda_function_base_layer_name" {
+  description = "AWS Lambda base layer name"
+  type        = string
+  default     = "pluvial-lambdas-layers-bucket"
+}
+
 variable "lambda_function_layer_s3_bucket" {
   description = "AWS Lambda layer S3 bucket"
   type        = string

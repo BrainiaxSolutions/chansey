@@ -14,7 +14,8 @@ resource "aws_lambda_function" "lambda_function" {
   memory_size = var.lambda_function_memory_size
 
   layers = [
-    aws_lambda_layer_version.lambda_layer.arn
+    aws_lambda_layer_version.lambda_layer.arn,
+    data.aws_lambda_layer_version.base_lambda_layer.arn
   ]
 
   environment {
