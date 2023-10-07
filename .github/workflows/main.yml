@@ -29,7 +29,10 @@ jobs:
       run: npm run build
 
     - name: Build step 05 - Add nodejs folder
-      run: cp -r node_modules/ dist/nodejs
+      run: cp -r node_modules/ dist/
+
+    - name: Build step 06 - Removing zip files
+      run: rm -rf dist/*.zip
 
     - name: Infrastructure step 01 - Terraform Install
       env :
