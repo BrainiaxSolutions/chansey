@@ -20,7 +20,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Build step 02 - Install dependencies
-      run: npm install
+      run: npm install --omit=dev
 
     - name: Build step 03 - Build
       run: npm run build

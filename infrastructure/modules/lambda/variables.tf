@@ -70,8 +70,13 @@ variable "lambda_function_layer_name" {
   type        = string
 }
 
-variable "lambda_function_layer_source_code_path" {
-  description = "Path that will be used to upload source code to AWS Lambda layer"
+variable "lambda_function_layer_s3_bucket" {
+  description = "AWS Lambda layer S3 bucket"
+  type        = string
+}
+
+variable "lambda_function_layer_s3_key" {
+  description = "AWS Lambda layer S3 key"
   type        = string
 }
 
