@@ -31,12 +31,6 @@ jobs:
     - name: Build step 05 - Build
       run: npm run build
 
-    - name: Build step 06 - Remove nest cli
-      run: npm uninstall -g @nestjs/cli
-
-    - name: Build step 07 - Zipping file
-      run: cd node_modules && zip -r deps.zip . 
-
     - name: Infrastructure step 01 - Terraform Install
       env :
         TERRAFORM_VERSION: "1.5.6"
@@ -65,9 +59,6 @@ jobs:
     - name: Infrastructure step 06 - Terraform Plan
       run : terraform -chdir=./infrastructure plan -input=false -out tfplan
       #run : terraform -chdir=./infrastructure plan -input=false -destroy -out tfplan
-
-    - name: Test
-      run: du -h . && ls -lasth node_modules
 
     - name: Infrastructure step 07 - Terraform Apply
       run : terraform -chdir=./infrastructure apply -auto-approve -input=false tfplan
