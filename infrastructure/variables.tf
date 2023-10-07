@@ -49,7 +49,7 @@ variable "lambda_function_description" {
 variable "lambda_function_handler" {
   description = "AWS Lambda function handler"
   type        = string
-  default     = "index.handler"
+  default     = "lambda.handler"
 }
 
 variable "lambda_function_source_code_path" {
@@ -68,4 +68,16 @@ variable "lambda_function_env" {
   description = "AWS Lambda environment variables"
   type        = map(string)
   default     = {}
+}
+
+variable "lambda_function_layer_name" {
+  description = "AWS Lambda layer name"
+  type        = string
+  default     = "chansey-api-layer"
+}
+
+variable "lambda_function_layer_source_code_path" {
+  description = "Path that will be used to upload source code to AWS Lambda layer"
+  type        = string
+  default     = "../dist"
 }

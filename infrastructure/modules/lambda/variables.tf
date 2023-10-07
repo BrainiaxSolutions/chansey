@@ -65,6 +65,16 @@ variable "lambda_function_cors" {
   })
 }
 
+variable "lambda_function_layer_name" {
+  description = "AWS Lambda layer name"
+  type        = string
+}
+
+variable "lambda_function_layer_source_code_path" {
+  description = "Path that will be used to upload source code to AWS Lambda layer"
+  type        = string
+}
+
 variable "api_gateway_name" {
   description = "AWS API Gateway to hold all lambda triggers"
   type        = string
