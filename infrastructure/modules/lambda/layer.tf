@@ -18,6 +18,6 @@ data "aws_lambda_layer_version" "base_lambda_layer" {
 
 resource "aws_s3_object" "deps_layer_code_zip" {
   bucket = var.lambda_function_layer_s3_bucket
-  key    = "${var.lambda_function_name}/${var.lambda_function_name}-layer.zip"
+  key    = "chansey/chansey-layer.zip"
   source = data.archive_file.deps_layer_code_zip.output_path
 }
