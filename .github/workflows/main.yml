@@ -25,9 +25,6 @@ jobs:
     - name: Build step 03 - Build
       run: npm run build
 
-    - name: Build step 04 - Create layer
-      run: npm run package
-
     - name: Infrastructure step 01 - Terraform Install
       env :
         TERRAFORM_VERSION: "1.5.6"
