@@ -15,7 +15,14 @@ module "chansey_lambda_production" {
   lambda_function_source_code_path = var.lambda_function_source_code_path
   lambda_function_output_path      = var.lambda_function_output_path
 
-  lambda_function_env = var.lambda_function_env
+  lambda_function_env = {
+    APP_ENVIRONMENT   = "PRD",
+    PORT              = "4003",
+    DB_NAME           = "mongodb",
+    URL_GEOCODING     = "https://maps.googleapis.com/maps/api/geocode",
+    DB_URL            = "${data.external.secrets_manager_secret_json.result["DB_URL"]}",
+    API_KEY_GEOCODING = "${data.external.secrets_manager_secret_json.result["API_KEY_GEOCODING"]}",
+  }
 
   lambda_function_cors = {
     allow_credentials = true

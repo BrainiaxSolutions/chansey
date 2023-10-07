@@ -44,8 +44,7 @@ variable "tags" {
 
 variable "lambda_function_env" {
   description = "AWS Lambda environment variables"
-  type        = map(string)
-  default     = {}
+  type        = map(any)
 }
 
 variable "lambda_function_handler" {

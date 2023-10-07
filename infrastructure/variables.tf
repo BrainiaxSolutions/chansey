@@ -64,8 +64,8 @@ variable "lambda_function_output_path" {
   default     = "../dist"
 }
 
-variable "lambda_function_env" {
-  description = "AWS Lambda environment variables"
-  type        = map(string)
-  default     = {}
+variable "secrets_manager_secret_name" {
+  description = "AWS Secrets Manager secret name"
+  type        = string
+  default     = "pluvial-chansey-secrets"
 }
