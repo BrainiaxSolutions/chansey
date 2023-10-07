@@ -6,7 +6,7 @@ import {
 } from '@nestjs/platform-fastify';
 import { V1AppModule } from './v1/app.module';
 import { FastifyServerOptions, FastifyInstance, fastify } from 'fastify';
-import * as awsLambdaFastify from 'aws-lambda-fastify';
+import * as awsLambdaFastify from '@fastify/aws-lambda';
 import {
   Context,
   APIGatewayProxyEvent,
