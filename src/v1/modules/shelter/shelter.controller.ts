@@ -26,10 +26,10 @@ export class ShelterController {
     }
   }
 
-  @Get(':id')
-  async findOne(@Param('id') id: string) {
+  @Get(':email')
+  async findByEmail(@Param('email') email: string) {
     try {
-      return await this.shelterService.findOne(id);
+      return await this.shelterService.findByEmail(email);
     } catch (error) {
       throw new ExceptionDto(error);
     }

@@ -28,7 +28,7 @@ async function bootstrap() {
   app.useGlobalFilters(new HttpExceptionFilter());
   useContainer(app.select(V1AppModule), { fallbackOnErrors: true });
 
-  await app.listen(config.app.port | 3000);
+  await app.listen(config.app.port || 3000);
 }
 
 AppClusterConfig.clusterize(bootstrap);

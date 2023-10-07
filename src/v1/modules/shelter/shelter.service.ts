@@ -51,8 +51,8 @@ export class ShelterService {
       .exec();
   }
 
-  async findOne(id: string) {
-    const shelter = await this.shelterRepository.findById(id);
+  async findByEmail(email: string) {
+    const shelter = await this.shelterRepository.findOne({ email });
 
     if (!shelter) {
       throw new HttpException(
