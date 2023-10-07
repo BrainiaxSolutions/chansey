@@ -69,27 +69,3 @@ variable "lambda_function_env" {
   type        = map(string)
   default     = {}
 }
-
-variable "lambda_function_layer_name" {
-  description = "AWS Lambda layer name"
-  type        = string
-  default     = "chansey-api-layer"
-}
-
-variable "lambda_function_base_layer_name" {
-  description = "AWS Lambda base layer name"
-  type        = string
-  default     = "base_lambda_layer"
-}
-
-variable "lambda_function_layer_s3_bucket" {
-  description = "AWS Lambda layer S3 bucket"
-  type        = string
-  default     = "lambdas-layers-pluvial"
-}
-
-variable "lambda_function_layer_s3_key" {
-  description = "AWS Lambda layer S3 key"
-  type        = string
-  default     = "chansey/chansey-layer.zip"
-}

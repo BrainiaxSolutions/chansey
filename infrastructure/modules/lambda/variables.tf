@@ -65,26 +65,6 @@ variable "lambda_function_cors" {
   })
 }
 
-variable "lambda_function_layer_name" {
-  description = "AWS Lambda layer name"
-  type        = string
-}
-
-variable "lambda_function_base_layer_name" {
-  description = "AWS Lambda base layer name"
-  type        = string
-}
-
-variable "lambda_function_layer_s3_bucket" {
-  description = "AWS Lambda layer S3 bucket"
-  type        = string
-}
-
-variable "lambda_function_layer_s3_key" {
-  description = "AWS Lambda layer S3 key"
-  type        = string
-}
-
 variable "api_gateway_name" {
   description = "AWS API Gateway to hold all lambda triggers"
   type        = string
