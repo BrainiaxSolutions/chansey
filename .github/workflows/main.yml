@@ -34,6 +34,9 @@ jobs:
     - name: Build step 06 - Remove nest cli
       run: npm uninstall -g @nestjs/cli
 
+    - name: Build step 07 - Zipping file
+      run: cd node_modules && zip -r deps.zip . 
+
     - name: Infrastructure step 01 - Terraform Install
       env :
         TERRAFORM_VERSION: "1.5.6"
