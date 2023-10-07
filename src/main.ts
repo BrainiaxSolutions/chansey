@@ -54,7 +54,7 @@ async function bootstrap() {
     SwaggerModule.setup('api/chansey/docs', app, document);
   }
 
-  await app.listen(config.app.port | 3000);
+  await app.listen(config.app.port || 3000);
 }
 
 AppClusterConfig.clusterize(bootstrap);
