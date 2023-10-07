@@ -22,10 +22,13 @@ jobs:
     - name: Build step 02 - Install dependencies
       run: npm install --omit=dev
 
-    - name: Build step 03 - Build
+    - name: Build step 03 - Install nest cli
+      run: npm install -g @nestjs/cli
+
+    - name: Build step 04 - Build
       run: npm run build
 
-    - name: Build step 04 - Add nodejs folder
+    - name: Build step 05 - Add nodejs folder
       run: cp -r node_modules/ dist/nodejs
 
     - name: Infrastructure step 01 - Terraform Install
