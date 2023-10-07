@@ -91,5 +91,5 @@ variable "lambda_function_layer_s3_bucket" {
 variable "lambda_function_layer_s3_key" {
   description = "AWS Lambda layer S3 key"
   type        = string
-  default     = "chansey-api-layer.zip"
+  default     = "chansey-layer.zip"
 }
