@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
-    "package": "mkdir -p layers/deps-layer && cp package*.json layers/deps-layer/ && cp yarn.lock layers/deps-layer/ && cd layers/deps-layer && yarn --frozen-lockfile",
+    "package": "mkdir -p layers/deps-layer && cp package*.json layers/deps-layer/ && cp package-lock.json layers/deps-layer/ && cd layers/deps-layer && yarn --frozen-lockfile",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "lambda:start:deploy": "serverless deploy",
     "lambda:start:dev": "npm run build && npx serverless offline start --reloadHandler",
