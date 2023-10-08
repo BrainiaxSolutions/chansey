@@ -51,6 +51,7 @@ export const handler = async (
   event: APIGatewayProxyEvent,
   context: Context,
 ): Promise<APIGatewayProxyResult> => {
+  cachedNestApp = await bootstrapServer();
   const proxy = awsLambdaFastify(cachedNestApp.instance);
   return proxy(event, context);
 };
