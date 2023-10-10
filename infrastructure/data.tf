@@ -18,3 +18,12 @@ data "aws_secretsmanager_secret_version" "secrets" {
 data "external" "secrets_manager_secret_json" {
   program = ["echo", "${data.aws_secretsmanager_secret_version.secrets.secret_string}"]
 }
+
+data "aws_api_gateway_authorizers" "authorizers" {
+  rest_api_id = data.aws_api_gateway_rest_api.api_gateway.id
+}
+
+data "aws_api_gateway_authorizer" "authorizer" {
+  rest_api_id   = data.aws_api_gateway_rest_api.api_gateway.id
+  authorizer_id = data.aws_api_gateway_authorizers.authorizers.ids[0]
+}
