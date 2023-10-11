@@ -18,8 +18,8 @@ module "chansey_lambda_production" {
   lambda_function_output_path      = var.lambda_function_output_path
 
   lambda_function_env = {
-    APP_ENVIRONMENT   = "PRD",
     PORT              = "4003",
+    APP_ENVIRONMENT   = "PRD",
     DB_NAME           = "mongodb",
     URL_GEOCODING     = "https://maps.googleapis.com/maps/api/geocode",
     DB_URL            = "${data.external.secrets_manager_secret_json.result["DB_URL"]}",
