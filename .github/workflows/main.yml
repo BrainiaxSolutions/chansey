@@ -35,7 +35,7 @@ jobs:
       run: mkdir chansey
 
     - name: Build step 07 - Zip dist
-      run: zip -r chansey/dist.zip dist
+      run: cd dist && zip -r ../chansey/dist.zip .
 
     - name: Infrastructure step 01 - Terraform Install
       env :
