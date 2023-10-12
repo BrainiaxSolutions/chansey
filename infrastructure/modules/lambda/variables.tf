@@ -36,6 +36,16 @@ variable "lambda_function_output_path" {
   type        = string
 }
 
+variable "lambda_function_bucket_name" {
+  description = "AWS Lambda function bucket name"
+  type        = string
+}
+
+variable "lambda_function_bucket_key" {
+  description = "AWS Lambda function bucket key"
+  type        = string
+}
+
 variable "tags" {
   description = "Common tags that will be used to tag all resources"
   type        = map(string)

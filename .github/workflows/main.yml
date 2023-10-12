@@ -1,4 +1,4 @@
-name: IaC Lifecycle
+name: Deploy Chansey lambda to AWS
 
 on:
   push:
@@ -30,9 +30,12 @@ jobs:
 
     - name: Build step 05 - Add nodejs folder
       run: cp -r node_modules/ dist/
+    
+    - name: Build step 06 - Mkdir vaporeon
+      run: mkdir chansey
 
-    - name: Build step 06 - Removing zip files
-      run: rm -rf dist/*.zip
+    - name: Build step 07 - Zip dist
+      run: zip -r chansey/dist.zip dist
 
     - name: Infrastructure step 01 - Terraform Install
       env :
