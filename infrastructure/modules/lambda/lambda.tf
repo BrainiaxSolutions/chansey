@@ -14,7 +14,7 @@ resource "aws_lambda_function" "lambda_function" {
 
   s3_bucket        = var.lambda_function_bucket_name
   s3_key           = var.lambda_function_bucket_key
-  source_code_hash = data.archive_file.lambda_function_source_code.output_base64sha256
+  source_code_hash = data.local_file.lambda_package.content_md5
 
   timeout     = var.lambda_function_timeout
   memory_size = var.lambda_function_memory_size
