@@ -4,7 +4,7 @@ data "aws_s3_object" "lambda_zip" {
 }
 
 data "local_file" "lambda_package" {
-  depends_on = [aws_s3_bucket_object.lambda_zip]
+  depends_on = [aws_s3_object.lambda_zip]
   filename   = var.lambda_function_source_code_path
 }
 
