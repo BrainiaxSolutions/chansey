@@ -7,7 +7,6 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
 import { ExceptionDto } from 'src/config/error/exception.dto';
 import { ShelterService } from './shelter.service';
 import { CreateShelterDto } from './dto/create-shelter.dto';
@@ -15,7 +14,6 @@ import { UpdateShelterDto } from './dto/update-shelter.dto';
 import { FindZipCodeShelterDto } from './dto/find-zipCode-shelter.dto';
 
 @Controller('v1/shelter')
-@ApiTags('Shelter')
 export class ShelterController {
   constructor(private readonly shelterService: ShelterService) {}
 
@@ -28,10 +26,10 @@ export class ShelterController {
     }
   }
 
-  @Get(':id')
-  async findOne(@Param('id') id: string) {
+  @Get(':email')
+  async findByEmail(@Param('email') email: string) {
     try {
-      return await this.shelterService.findOne(id);
+      return await this.shelterService.findByEmail(email);
     } catch (error) {
       throw new ExceptionDto(error);
     }
