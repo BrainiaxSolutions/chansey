@@ -33,14 +33,14 @@ resource "aws_lambda_function_url" "mylambda_function_url" {
   function_name      = aws_lambda_function.lambda_function.function_name
   authorization_type = "NONE"
 
-  cors {
-    allow_credentials = var.lambda_function_cors.allow_credentials
-    allow_origins     = var.lambda_function_cors.allow_origins
-    allow_methods     = var.lambda_function_cors.allow_methods
-    allow_headers     = var.lambda_function_cors.allow_headers
-    expose_headers    = var.lambda_function_cors.expose_headers
-    max_age           = var.lambda_function_cors.max_age
-  }
+  # cors {
+  #   allow_credentials = var.lambda_function_cors.allow_credentials
+  #   allow_origins     = var.lambda_function_cors.allow_origins
+  #   allow_methods     = var.lambda_function_cors.allow_methods
+  #   allow_headers     = var.lambda_function_cors.allow_headers
+  #   expose_headers    = var.lambda_function_cors.expose_headers
+  #   max_age           = var.lambda_function_cors.max_age
+  # }
 }
 
 resource "aws_lambda_permission" "lambda_permission" {
