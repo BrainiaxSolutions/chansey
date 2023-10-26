@@ -45,6 +45,13 @@ module "chansey_lambda_production" {
   }
 }
 
-output "chansey_lambda_production" {
-  value = module.chansey_lambda_production
+module "eventbridge" {
+  source = "./modules/eventbridge"
+
+  eventbridge_rule_name                = var.eventbridge_rule_name
+  eventbridge_rule_description         = var.eventbridge_rule_description
+  eventbridge_rule_schedule_expression = var.eventbridge_rule_schedule_expression
+  eventbridge_target_id                = var.eventbridge_target_id
+  eventbridge_lambda_function_name     = var.lambda_function_name
+  eventbridge_lambda_function_arn      = module.chansey_lambda_production.lambda_function_arn
 }

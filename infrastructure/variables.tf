@@ -81,3 +81,33 @@ variable "secrets_manager_secret_name" {
   type        = string
   default     = "pluvial-chansey-secrets"
 }
+
+variable "eventbridge_rule_name" {
+  description = "AWS EventBridge rule name"
+  type        = string
+  default     = "chansey-warmup-rule"
+}
+
+variable "eventbridge_rule_description" {
+  description = "AWS EventBridge rule description"
+  type        = string
+  default     = "Chansey API EventBridge rule"
+}
+
+variable "eventbridge_rule_schedule_expression" {
+  description = "AWS EventBridge rule schedule expression"
+  type        = string
+  default     = "rate(2 minutes)"
+}
+
+variable "eventbridge_target_id" {
+  description = "AWS EventBridge target id"
+  type        = string
+  default     = "chansey-eventbridge-target"
+}
+
+variable "eventbridge_lambda_function_name" {
+  description = "AWS EventBridge lambda function name"
+  type        = string
+  default     = "chansey-api"
+}
