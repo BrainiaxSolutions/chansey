@@ -20,6 +20,6 @@ resource "aws_lambda_permission" "eventbridge_permission" {
 }
 
 resource "aws_cloudwatch_log_group" "eventbridge_log_group" {
-  name              = "/aws/lambda/${var.eventbridge_lambda_function_name}"
-  retention_in_days = 14
+  name              = "/aws/lambda/${var.eventbridge_lambda_function_name}-warmup"
+  retention_in_days = 7
 }
