@@ -1,3 +1,4 @@
+import { Shelter } from 'src/v1/database/models/shelter.entity';
 import { UpdateShelterDto } from '../../dto/update-shelter.dto';
 
 export abstract class Step {
@@ -9,6 +10,6 @@ export abstract class Step {
 
   public abstract validate(
     id: string,
-    shelter: UpdateShelterDto,
+    shelter: Shelter | UpdateShelterDto,
   ): Promise<void>;
 }
