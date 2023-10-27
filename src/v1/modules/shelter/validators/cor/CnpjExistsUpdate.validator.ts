@@ -3,6 +3,7 @@ import { Shelter } from '../../../../database/models/shelter.entity';
 import { Step } from './Step';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { UpdateShelterDto } from '../../dto/update-shelter.dto';
 
 export class CnpjExistsUpdate extends Step {
   constructor(
@@ -12,7 +13,10 @@ export class CnpjExistsUpdate extends Step {
     super(next);
   }
 
-  async validate(id: string, shelter: Shelter): Promise<void> {
+  async validate(
+    id: string,
+    shelter: Shelter | UpdateShelterDto,
+  ): Promise<void> {
     const shelterExists: Shelter = await this.shelterRepository.findOne({
       cnpj: shelter.cnpj,
       _id: { $ne: id },

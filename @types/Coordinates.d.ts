@@ -5,4 +5,5 @@ export type CoordinatesType = {
 
 export type LocationType = {
   coordinates: number[];
+  type?: 'Point';
 };

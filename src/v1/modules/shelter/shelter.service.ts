@@ -17,20 +17,21 @@ export class ShelterService {
     private readonly geocoding: Geocoding,
   ) {}
 
-  async addCordenates(residentDto) {
+  async addCordenates(shelterDto) {
     const { latitude, longitude } = await this.geocoding.getCoordinates({
-      zipcode: residentDto.zipCode,
-      address: `${residentDto.address}, ${residentDto.addressNumber}`,
+      zipcode: shelterDto.zipCode,
+      address: `${shelterDto.address}, ${shelterDto.addressNumber}`,
     });
 
-    residentDto.location = {
+    shelterDto.location = {
       coordinates: [],
     };
 
-    residentDto.location.coordinates[0] = longitude;
-    residentDto.location.coordinates[1] = latitude;
+    shelterDto.location.coordinates[0] = longitude;
+    shelterDto.location.coordinates[1] = latitude;
+    shelterDto.location.type = 'Point';
 
-    return residentDto;
+    return shelterDto;
   }
 
   async create(createShelterDto: CreateShelterDto): Promise<Shelter> {
@@ -65,6 +66,15 @@ export class ShelterService {
   }
 
   async update(id: string, updateShelterDto: UpdateShelterDto) {
+    const shelterEntity = await this.shelterRepository.findOne({ _id: id });
+
+    if (!shelterEntity) {
+      throw new HttpException(
+        'Shelter id not exists in database.',
+        HttpStatus.NOT_FOUND,
+      );
+    }
+
     const validate: Step = new CnpjExistsUpdate(
       this.shelterRepository,
       new EmailExistsUpdate(this.shelterRepository, new SucessValidate()),
@@ -77,7 +87,9 @@ export class ShelterService {
     )
       updateShelterDto = await this.addCordenates(updateShelterDto);
 
-    const shelter = await this.shelterRepository.updateOne(
+    updateShelterDto.location.type = 'Point';
+
+    const shelterChanged = await this.shelterRepository.updateOne(
       { _id: id },
       updateShelterDto,
       {
@@ -85,7 +97,7 @@ export class ShelterService {
       },
     );
 
-    if (!shelter.matchedCount)
+    if (!shelterChanged.matchedCount)
       throw new HttpException(
         'Shelter id not exists in database.',
         HttpStatus.NOT_FOUND,
