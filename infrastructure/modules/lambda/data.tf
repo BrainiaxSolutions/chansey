@@ -10,10 +10,10 @@ data "local_file" "lambda_package" {
   filename   = var.lambda_function_source_code_path
 }
 
-data "aws_api_gateway_rest_api" "api_gateway" {
-  name = var.api_gateway_name
-}
+# data "aws_api_gateway_rest_api" "api_gateway" {
+#   name = var.api_gateway_name
+# }
 
-data "aws_api_gateway_domain_name" "api_gateway_domain_name" {
-  domain_name = var.api_gateway_domain_name
-}
+# data "aws_api_gateway_domain_name" "api_gateway_domain_name" {
+#   domain_name = var.api_gateway_domain_name
+# }
