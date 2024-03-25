@@ -4,6 +4,8 @@ import { FastifyInstance } from "fastify";
 import { description, name, version } from "../../package.json";
 
 export const swagger = async (fastify: FastifyInstance, config: any) => {
+	console.log(config.app.serverlessOffline);
+	
 	await fastify.register(fastifySwagger, {
 		swagger: {
 			info: {
@@ -18,7 +20,7 @@ export const swagger = async (fastify: FastifyInstance, config: any) => {
 				url: "https://swagger.io",
 				description: "Find more info here",
 			},
-			basePath: `${config.app.offline === "true" ? "/dev" : ""}`,
+			basePath: config.app.serverlessOffline === "true" ? "/dev" : "/",
 		},
 	});
 

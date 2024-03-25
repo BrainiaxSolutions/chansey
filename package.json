@@ -1,5 +1,5 @@
 {
-  "name": "skeleton",
+  "name": "chansey",
   "version": "1.0.0",
   "description": "Lambda responsável pelo gerenciamento de abrigos do sistema Pluvial.",
   "author": "Beatriz Assunção, Luiz Ricardo Santos, Ian Soares e Yumi Tokuo",
@@ -7,6 +7,9 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "tsc",
+    "start": "cls || clear && node -r ts-node/register --env-file=.env src/main.ts",
+    "start:dev": "cls || clear && ts-node-dev --respawn --transpile-only --env-file=.env src/main.ts",
+    "start:prod": "cls || clear && node --env-file=.env dist/src/main",
     "lambda:start:dev": "cls || clear && npm run build && npx serverless offline start --reloadHandler",
     "lambda:start:deploy": "cls || clear && serverless deploy",
     "test": "jest --runInBand --coverage --config ./test/jest.config.json",

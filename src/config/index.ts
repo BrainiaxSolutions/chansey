@@ -1,7 +1,7 @@
 import * as application from "../../package.json";
 
 type Env = {
-	app: { port: number; environment: string, offline: string };
+	app: { port: number; environment: string, serverlessOffline: string };
 	plugins: { swagger: { basePath: string } };
 	stripPrefix: { path: string };
 	database: { name: string; url: string };
@@ -11,7 +11,7 @@ export const env = Object.freeze({
 	app: {
 		port: Number(process.env.PORT),
 		environment: process.env.APP_ENVIRONMENT,
-		offline: process.env.OFFLINE,
+		serverlessOffline: process.env.SERVERLESS_OFFLINE,
 	},
 	plugins: {
 		swagger: {
