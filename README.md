@@ -1,75 +1,53 @@
+# <p align="center">Skeleton</p>
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+  <img src="https://github.com/lurickardo/skeleton/assets/34722198/2f22922f-c04a-4278-b379-e75a56ada011" alt="Logo" width="120">
 </p>
-
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
+<p align="center">Generic software architecture framework in <a href="https://nodejs.org" target="_blank">Node.js</a> using Fastify.</p>
+<p align="center">
+  <a><img src="https://img.shields.io/badge/license-MIT-green" alt="Package License" /></a>
+  <a href="https://www.npmjs.com" target="_blank"><img src="https://img.shields.io/badge/npm-v10.2.3-green?logo=npm" alt="NPM Version" /></a>
+  <a href="https://nodejs.org" target="_blank"><img src="https://img.shields.io/badge/node-v20.10.0-green?logo=nodedotjs" alt="Node Version"></a>
+  <a href="https://www.typescriptlang.org" target="_blank"><img src="https://img.shields.io/badge/typescript-v5.3.3-green?logo=typescript" alt="Typescript Version"></a>
+  <a href="https://fastify.dev" target="_blank"><img src="https://img.shields.io/badge/fastify-v4.25.2-green?logo=fastify" alt="Fastify Version"></a>
+  <a href="https://jestjs.io" target="_blank"><img src="https://img.shields.io/badge/jest-v29.7.0-green?logo=jest" alt="Jest Version"></a>
+  <a href="https://biomejs.dev" target="_blank"><img src="https://img.shields.io/badge/biome-v1.5.3-green?logo=biome" alt="Biome Version"></a>
+  <a href="https://zod.dev/" target="_blank"><img src="https://img.shields.io/badge/zod-v3.22.4-green?logo=zod" alt="Zod Version"></a>
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Skeleton is a generic software architecture framework in Node.js using Fastify, designed to provide a flexible and reusable foundation for application development.
+
+## Philosophy
+
+The idea of the system is to be a base architecture for you to develop your own small or large-scale services, without the need to recreate existing solutions. At the same time, not forcing you to use a complete and heavy structure.
+Each branch was created to exemplify synergistic implementations with the code base, working like "Lego pieces", where you can take only what is necessary for your version of the system and implement it in the best way possible.
+
+# Libraries
+
+- NodeJS
+- Fastify
+- Typescript
+- Jest
+- Biome
 
 ## Installation
 
 ```bash
-$ yarn install
+$ npm install
 ```
 
 ## Running the app
 
 ```bash
 # development
-$ yarn run start
+$ npm run start:dev
 
-# watch mode
-$ yarn run start:dev
-
-# production mode
-$ yarn run start:prod
+# production
+$ npm run build
+$ npm run start:prod
 ```
 
-## Test
+## Swagger
 
-```bash
-# unit tests
-$ yarn run test
-
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+`http://localhost:3000/api/skeleton/docs`

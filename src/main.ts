@@ -1,34 +1,26 @@
-import { NestFactory } from '@nestjs/core';
-import { ValidationPipe } from '@nestjs/common';
-import { useContainer } from 'class-validator';
-import { AppClusterConfig } from './app-cluster.config';
-import {
-  FastifyAdapter,
-  NestFastifyApplication,
-} from '@nestjs/platform-fastify';
-import { V1AppModule } from './v1/app.module';
-import { HttpExceptionFilter } from './config/error/http-exception.filter';
-import { config } from './config';
+import fastify, { FastifyInstance } from "fastify";
+import { routes } from "./app.module";
+import { env } from "./config";
+import { errorHandler } from "./config/error";
+import { registerPlugins } from "./plugins";
 
-async function bootstrap() {
-  const app = await NestFactory.create<NestFastifyApplication>(
-    V1AppModule,
-    new FastifyAdapter(),
-    { cors: true },
-  );
+const bootstrap = (): FastifyInstance => {
+	const server: FastifyInstance = fastify({
+		logger: true,
+	});
+	server.setErrorHandler((error, request, reply) =>
+		errorHandler(error, request, reply),
+	);
+	registerPlugins(server, env);
+	server.register(routes, { prefix: env.stripPrefix.path });
+	return server;
+};
 
-  app.useGlobalPipes(
-    new ValidationPipe({
-      transform: true,
-      whitelist: true,
-      forbidNonWhitelisted: true,
-    }),
-  );
-  app.setGlobalPrefix('api/chansey');
-  app.useGlobalFilters(new HttpExceptionFilter());
-  useContainer(app.select(V1AppModule), { fallbackOnErrors: true });
-
-  await app.listen(config.app.port || 3000);
+if (require.main === module) {
+	bootstrap().listen({ port: env.app.port }, (err) => {
+		if (err) console.error(err);
+		console.log(`server listening on ${env.app.port}`);
+	});
 }
 
-AppClusterConfig.clusterize(bootstrap);
+export { bootstrap };

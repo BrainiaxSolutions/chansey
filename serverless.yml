@@ -1,4 +1,4 @@
-service: serverless-chansey
+service: skeleton
 
 useDotenv: true
 
@@ -8,31 +8,12 @@ plugins:
 
 custom:
   serverless-offline:
-    httpPort: 4003
-    websocketPort: 4004
-    lambdaPort: 4005
+    httpPort: ${env:PORT}
 
 provider:
   name: aws
-  runtime: nodejs18.x
-  timeout: 900
-  environment:
-    PORT: ${env:PORT}
-    APP_ENVIRONMENT: ${env:APP_ENVIRONMENT}
+  timeout: 600
+  runtime: nodejs20.x
+  environment: ${file(ymls/environment.yml)}
 
-    DB_NAME: ${env:DB_NAME}
-    DB_URL: ${env:DB_URL}
-
-    URL_GEOCODING: ${env:URL_GEOCODING}
-    API_KEY_GEOCODING: ${env:API_KEY_GEOCODING}
-
-functions:
-  main:
-    handler: dist/lambda.handler
-    events:
-      - http:
-          method: ANY
-          path: /
-      - http:
-          method: ANY
-          path: '{proxy+}'
+functions: ${file(ymls/functions.yml)}
