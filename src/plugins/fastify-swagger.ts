@@ -4,8 +4,6 @@ import { FastifyInstance } from "fastify";
 import { description, name, version } from "../../package.json";
 
 export const swagger = async (fastify: FastifyInstance, config: any) => {
-	console.log(config.app.serverlessOffline);
-	
 	await fastify.register(fastifySwagger, {
 		swagger: {
 			info: {
