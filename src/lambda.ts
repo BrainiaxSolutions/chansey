@@ -4,6 +4,7 @@ import { routes } from "./app.module";
 import { env } from "./config";
 import { errorHandler } from "./config/error";
 import { registerPlugins } from "./plugins";
+import { typeormDataSource } from "./database";
 
 const bootstrap = (): FastifyInstance => {
 	const server: FastifyInstance = fastify({
@@ -18,10 +19,23 @@ const bootstrap = (): FastifyInstance => {
 };
 
 if (require.main === module) {
-	bootstrap().listen({ port: env.app.port }, (err) => {
-		if (err) console.error(err);
-		console.log(`server listening on ${env.app.port}`);
-	});
+	bootstrap().listen({ port: env.app.port });
 }
 
-export const handler = awsLambdaFastify(bootstrap());
+export const handler = async (event: any, context: any): Promise<any> => {
+	context.callbackWaitsForEmptyEventLoop = false;
+	if(!typeormDataSource.isInitialized) 
+		await typeormDataSource.initialize()
+			.then(() => {
+			process.stdout.write(
+				"\n\x1b[32mConnection to database successful!\x1b[0m\n",
+			);
+			})
+			.catch((error) => {
+			process.stdout.write(
+				`\n\x1b[31mERROR: Unable to connect to the database: ${error}\x1b[0m\n`,
+			);
+			});
+
+	return awsLambdaFastify(bootstrap())(event, context);
+}

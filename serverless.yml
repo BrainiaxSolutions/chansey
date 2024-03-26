@@ -12,7 +12,7 @@ custom:
 
 provider:
   name: aws
-  timeout: 600
+  timeout: 900
   runtime: nodejs20.x
   environment: ${file(ymls/environment.yml)}
 

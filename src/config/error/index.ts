@@ -52,7 +52,7 @@ export const errorHandler = (
 	}
 
 	process.stdout.write(
-		`\n \x1b[41m--- UNEXPECTED ERROR --- \x1b[0m\n ${error}\n \x1b[41m--- END UNEXPECTED ERROR --- \x1b[0m\n`,
+		`\n\n\x1b[41m--- UNEXPECTED ERROR --- \x1b[0m\n ${JSON.stringify(error)}\n\x1b[41m--- END UNEXPECTED ERROR --- \x1b[0m\n\n\n`,
 	);
 	return reply.status(HttpStatus.INTERNAL_SERVER_ERROR).send({
 		statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
