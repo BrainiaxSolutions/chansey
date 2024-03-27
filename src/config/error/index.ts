@@ -32,8 +32,8 @@ export const errorHandler = (
 	}
 
 	if (isZodError(error)) {
-		const message = error.issues.map((error) => {
-			return error.message;
+		const message = error.issues.map((issue) => {
+			return `${issue.path[0]}: ${issue.message}`;
 		});
 
 		return reply.status(400).send({
@@ -52,7 +52,9 @@ export const errorHandler = (
 	}
 
 	process.stdout.write(
-		`\n\n\x1b[41m--- UNEXPECTED ERROR --- \x1b[0m\n ${JSON.stringify(error)}\n\x1b[41m--- END UNEXPECTED ERROR --- \x1b[0m\n\n\n`,
+		`\n\n\x1b[41m--- UNEXPECTED ERROR --- \x1b[0m\n ${JSON.stringify(
+			error,
+		)}\n\x1b[41m--- END UNEXPECTED ERROR --- \x1b[0m\n\n\n`,
 	);
 	return reply.status(HttpStatus.INTERNAL_SERVER_ERROR).send({
 		statusCode: HttpStatus.INTERNAL_SERVER_ERROR,

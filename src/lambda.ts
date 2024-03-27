@@ -24,18 +24,19 @@ if (require.main === module) {
 
 export const handler = async (event: any, context: any): Promise<any> => {
 	context.callbackWaitsForEmptyEventLoop = false;
-	if(!typeormDataSource.isInitialized) 
-		await typeormDataSource.initialize()
+	if (!typeormDataSource.isInitialized)
+		await typeormDataSource
+			.initialize()
 			.then(() => {
-			process.stdout.write(
-				"\n\x1b[32mConnection to database successful!\x1b[0m\n",
-			);
+				process.stdout.write(
+					"\n\x1b[32mConnection to database successful!\x1b[0m\n",
+				);
 			})
 			.catch((error) => {
-			process.stdout.write(
-				`\n\x1b[31mERROR: Unable to connect to the database: ${error}\x1b[0m\n`,
-			);
+				process.stdout.write(
+					`\n\x1b[31mERROR: Unable to connect to the database: ${error}\x1b[0m\n`,
+				);
 			});
 
 	return awsLambdaFastify(bootstrap())(event, context);
-}
+};

@@ -1,5 +1,6 @@
 import { FastifyInstance } from "fastify";
 import { userRouteV1 } from "./v1/modules/user/user.route";
+import { shelterRouteV1 } from "./v1/modules/shelter/shelter.route";
 
 const registerRoutes = (server: FastifyInstance, routes: any[]): void => {
 	routes.forEach((route) => {
@@ -8,5 +9,5 @@ const registerRoutes = (server: FastifyInstance, routes: any[]): void => {
 };
 
 export const routes = async (server: FastifyInstance): Promise<void> => {
-	registerRoutes(server, [...userRouteV1]);
+	registerRoutes(server, [...shelterRouteV1]);
 };

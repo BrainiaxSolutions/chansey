@@ -1,54 +1,54 @@
 {
-  "name": "chansey",
-  "version": "1.0.0",
-  "description": "Lambda responsável pelo gerenciamento de abrigos do sistema Pluvial.",
-  "author": "Beatriz Assunção, Luiz Ricardo Santos, Ian Soares e Yumi Tokuo",
-  "private": true,
-  "license": "UNLICENSED",
-  "scripts": {
-    "build": "tsc",
-    "start": "cls || clear && node -r ts-node/register --env-file=.env src/main.ts",
-    "start:dev": "cls || clear && ts-node-dev --respawn --transpile-only --env-file=.env src/main.ts",
-    "start:prod": "cls || clear && node --env-file=.env dist/src/main",
-    "lambda:start:dev": "cls || clear && npm run build && npx serverless offline start --reloadHandler",
-    "lambda:start:deploy": "cls || clear && serverless deploy",
-    "test": "jest --runInBand --coverage --config ./test/jest.config.json",
-    "test:watch": "jest --runInBand --config ./test/jest.config.json --watch",
-    "test:cov": "jest --runInBand --config ./test/jest.config.json --collect-coverage",
-    "lint": "npx @biomejs/biome format ./ --write",
-    "lint:check": "npx @biomejs/biome check ./src"
-  },
-  "dependencies": {
-    "@fastify/aws-lambda": "^4.0.0",
-    "@fastify/cors": "^8.5.0",
-    "@fastify/swagger": "^8.13.0",
-    "@fastify/swagger-ui": "^2.0.1",
-    "@fastify/under-pressure": "^8.3.0",
-    "@types/node": "^20.10.6",
-    "fastify": "^4.25.2",
-    "http-status": "^1.7.3",
-    "mongodb": "^6.5.0",
-    "typeorm": "^0.3.20",
-    "zod": "^3.22.4"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.5.3",
-    "@types/jest": "^29.5.11",
-    "serverless-offline": "^13.3.2",
-    "serverless-plugin-optimize": "^4.2.1-rc.1",
-    "husky": "^4.3.8",
-    "jest": "^29.7.0",
-    "ts-jest": "^29.1.1",
-    "ts-node": "^10.9.2",
-    "ts-node-dev": "^2.0.0",
-    "tsconfig-paths": "^4.2.0",
-    "tslib": "^2.6.2",
-    "typescript": "^5.3.3"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint:check && npm run test:cov && npm run build",
-      "pre-push": "npm run lint:check && npm run test:cov && npm run build"
-    }
-  }
+	"name": "chansey",
+	"version": "1.0.0",
+	"description": "Lambda responsável pelo gerenciamento de abrigos do sistema Pluvial.",
+	"author": "Beatriz Assunção, Luiz Ricardo Santos, Ian Soares e Yumi Tokuo",
+	"private": true,
+	"license": "UNLICENSED",
+	"scripts": {
+		"build": "tsc",
+		"start": "cls || clear && node -r ts-node/register --env-file=.env src/main.ts",
+		"start:dev": "cls || clear && ts-node-dev --respawn --transpile-only --env-file=.env src/main.ts",
+		"start:prod": "cls || clear && node --env-file=.env dist/src/main",
+		"lambda:start:dev": "cls || clear && npm run build && npx serverless offline start --reloadHandler",
+		"lambda:start:deploy": "cls || clear && serverless deploy",
+		"test": "jest --runInBand --coverage --config ./test/jest.config.json",
+		"test:watch": "jest --runInBand --config ./test/jest.config.json --watch",
+		"test:cov": "jest --runInBand --config ./test/jest.config.json --collect-coverage",
+		"lint": "npx @biomejs/biome format ./ --write",
+		"lint:check": "npx @biomejs/biome check ./src"
+	},
+	"dependencies": {
+		"@fastify/aws-lambda": "^4.0.0",
+		"@fastify/cors": "^8.5.0",
+		"@fastify/swagger": "^8.13.0",
+		"@fastify/swagger-ui": "^2.0.1",
+		"@fastify/under-pressure": "^8.3.0",
+		"@types/node": "^20.10.6",
+		"fastify": "^4.25.2",
+		"http-status": "^1.7.3",
+		"mongodb": "^6.5.0",
+		"typeorm": "^0.3.20",
+		"zod": "^3.22.4"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.5.3",
+		"@types/jest": "^29.5.11",
+		"serverless-offline": "^13.3.2",
+		"serverless-plugin-optimize": "^4.2.1-rc.1",
+		"husky": "^4.3.8",
+		"jest": "^29.7.0",
+		"ts-jest": "^29.1.1",
+		"ts-node": "^10.9.2",
+		"ts-node-dev": "^2.0.0",
+		"tsconfig-paths": "^4.2.0",
+		"tslib": "^2.6.2",
+		"typescript": "^5.3.3"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "npm run lint:check && npm run test:cov && npm run build",
+			"pre-push": "npm run lint:check && npm run test:cov && npm run build"
+		}
+	}
 }
