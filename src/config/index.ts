@@ -4,7 +4,13 @@ type Env = {
 	app: { port: number; environment: string; serverlessOffline: string };
 	plugins: { swagger: { basePath: string } };
 	stripPrefix: { path: string };
-	database: { name: "mongodb"; url: string };
+	db: { name: "mongodb"; url: string };
+	providers: {
+		geocoder: {
+			url: string;
+			key: string;
+		};
+	};
 };
 
 export const env = Object.freeze({
@@ -23,8 +29,14 @@ export const env = Object.freeze({
 	stripPrefix: {
 		path: `/api/${application.name.replace(/-/g, "")}`,
 	},
-	database: {
+	db: {
 		name: process.env.DB_NAME,
 		url: process.env.DB_URL,
+	},
+	providers: {
+		geocoder: {
+			url: process.env.URL_GEOCODING,
+			key: process.env.API_KEY_GEOCODING,
+		},
 	},
 } as Env);

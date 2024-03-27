@@ -27,6 +27,9 @@ export const shelterSchema = {
 				addressNumber: {
 					type: "string",
 				},
+				neighborhood: {
+					type: "string",
+				},
 				complement: {
 					type: "string",
 				},
@@ -54,6 +57,7 @@ export const shelterSchema = {
 				"zipCode",
 				"address",
 				"addressNumber",
+				"neighborhood",
 				"complement",
 				"phone",
 				"terms",

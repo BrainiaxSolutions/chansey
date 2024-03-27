@@ -9,6 +9,7 @@ const CreateShelterSchema = z.object({
 	zipCode: z.string().min(8).max(8),
 	address: z.string().min(1).max(45),
 	addressNumber: z.string().min(1).max(4),
+	neighborhood: z.string().min(1).max(45),
 	complement: z.string().min(1).max(30),
 	location: z
 		.object({

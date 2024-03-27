@@ -2,7 +2,7 @@ import { FastifyReply, FastifyRequest } from "fastify";
 import * as HttpStatus from "http-status";
 
 const isFastifyError = (error: any): boolean => {
-	return error.code || (error.statusCode && !error.message);
+	return error.code < 600 || (error.statusCode && error.statusCode === 400 && !error.message);
 };
 
 const isZodError = (error: any): boolean => {

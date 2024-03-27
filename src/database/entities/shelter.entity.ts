@@ -1,14 +1,14 @@
 import {
 	Entity,
-	PrimaryGeneratedColumn,
 	Column,
 	CreateDateColumn,
 	UpdateDateColumn,
+	ObjectIdColumn,
 } from "typeorm";
 
 @Entity("shelters")
 export class Shelter {
-	@PrimaryGeneratedColumn("uuid")
+	@ObjectIdColumn()
 	_id: string;
 
 	@Column({ length: 45, nullable: false })

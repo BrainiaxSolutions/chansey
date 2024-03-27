@@ -13,6 +13,9 @@
 			"complexity": {
 				"noForEach": "off",
 				"noUselessCatch": "off"
+			},
+			"style": {
+				"noParameterAssign": "off"
 			}
 		}
 	},
