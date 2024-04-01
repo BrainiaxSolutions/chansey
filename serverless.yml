@@ -1,4 +1,4 @@
-service: skeleton
+service: chansey
 
 useDotenv: true
 
