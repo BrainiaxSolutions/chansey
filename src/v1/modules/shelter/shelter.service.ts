@@ -2,7 +2,7 @@ import * as HttpStatus from "http-status";
 import { httpException } from "../../../../src/config/error";
 import { CreateShelterDto, UpdateShelterDto } from "./dto";
 import { geocodingProvider } from "../../../provider/geocoding.provider";
-import { shelterRepository } from "../../../database/repositories/shelter.repository";
+import { shelterRepository } from "./shelter.repository";
 import { Shelter } from "../../../database/entities/shelter.entity";
 import { utils } from "../../../config/utils";
 
