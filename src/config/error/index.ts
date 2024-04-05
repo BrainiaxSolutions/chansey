@@ -66,6 +66,9 @@ export const errorHandler = (
 	});
 };
 
-export const httpException = (message: string, statusCode: number) => {
+export const httpException = (
+	message: string | string[],
+	statusCode: number,
+) => {
 	return { message, statusCode };
 };
