@@ -1,7 +1,8 @@
+import { graphhopperProvider } from "./../../../provider/graphhopper.provider";
+import { googleProvider } from "./../../../provider/google.provider";
 import * as HttpStatus from "http-status";
 import { httpException } from "../../../../src/config/error";
 import { CreateShelterDto, UpdateShelterDto } from "./dto";
-import { geocodingProvider } from "../../../provider/geocoding.provider";
 import { shelterRepository } from "./shelter.repository";
 import { Shelter } from "../../../database/entities/shelter.entity";
 import { utils } from "../../../config/utils";
@@ -11,11 +12,21 @@ const addCordenates = async (
 	createShelterDto: CreateShelterDto,
 ): Promise<CreateShelterDto> => {
 	try {
-		const { latitude, longitude } = await geocodingProvider.getCoordinates({
+		let coordinates = await googleProvider.getCoordinates({
 			address: createShelterDto.address,
 			addressNumber: createShelterDto.addressNumber,
 			neighborhood: createShelterDto.neighborhood,
 		});
+
+		if (coordinates.latitude === 0 && coordinates.longitude === 0) {
+			coordinates = await graphhopperProvider.getCoordinates({
+				address: createShelterDto.address,
+				addressNumber: createShelterDto.addressNumber,
+				neighborhood: createShelterDto.neighborhood,
+			});
+		}
+
+		const { latitude, longitude } = coordinates;
 
 		createShelterDto.location = {
 			coordinates: [],
@@ -89,7 +100,7 @@ export const shelterService = {
 
 			await shelterRepository.getRepository.update({ email }, updateShelterDto);
 
-			return updateShelterDto;
+			return utils.filterAttributes(updateShelterDto, ["location"]);
 		} catch (error) {
 			throw error;
 		}

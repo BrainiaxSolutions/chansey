@@ -6,10 +6,18 @@ type Env = {
 	stripPrefix: { path: string };
 	db: { name: "mongodb"; url: string };
 	providers: {
-		geocoder: {
-			name: "google";
-			url: string;
-			key: string;
+		google: {
+			geocoder: {
+				name: "google";
+				url: string;
+				key: string;
+			};
+		};
+		graphhopper: {
+			geocoder: {
+				url: string;
+				key: string;
+			};
 		};
 	};
 };
@@ -35,10 +43,18 @@ export const env = Object.freeze({
 		url: process.env.DB_URL,
 	},
 	providers: {
-		geocoder: {
-			name: process.env.NAME_PROVIDER_GEOCODING,
-			url: process.env.URL_GEOCODING,
-			key: process.env.API_KEY_GEOCODING,
+		google: {
+			geocoder: {
+				name: "google",
+				url: process.env.GOOGLE_URL_GEOCODING,
+				key: process.env.GOOGLE_API_KEY,
+			},
+		},
+		graphhopper: {
+			geocoder: {
+				url: process.env.GRAPHHOPPER_URL_GEOCODING,
+				key: process.env.GRAPHHOPPER_API_KEY,
+			},
 		},
 	},
 } as Env);

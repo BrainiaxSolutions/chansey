@@ -10,11 +10,11 @@ type GeocodingParametersType = {
 };
 
 const geocoder = NodeGeocoder({
-	provider: env.providers.geocoder.name,
-	apiKey: env.providers.geocoder.key,
+	provider: env.providers.google.geocoder.name,
+	apiKey: env.providers.google.geocoder.key,
 });
 
-export const geocodingProvider = {
+export const googleProvider = {
 	getCoordinates: async ({
 		address,
 		addressNumber,
@@ -27,19 +27,21 @@ export const geocodingProvider = {
 				country,
 			} as NodeGeocoder.Query;
 			const response = await geocoder.geocode(query);
+
 			if (response.length > 0) {
-				const location = response[0];
 				return {
-					latitude: location.latitude,
-					longitude: location.longitude,
+					latitude: response[0].latitude || 0,
+					longitude: response[0].longitude || 0,
 				};
 			}
 			return {
-				latitude: -0,
-				longitude: -0,
+				latitude: 0,
+				longitude: 0,
 			};
 		} catch (error) {
-			throw new Error(`Error on GET - getCoordinates - Geocoding: ${error}`);
+			throw new Error(
+				`Error Google API on GET - getCoordinates - Geocoding: ${error}`,
+			);
 		}
 	},
 };
